@@ -1,4 +1,4 @@
-const posts = require("../db/db.js");
+const postsPath = require("../db/db.js");
 const path = require("path");
 
 
