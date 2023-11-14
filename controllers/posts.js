@@ -1,55 +1,46 @@
-const postsPath = require("../db/db.js");
+
+const postsJSON = require("../db/db.json");
 const path = require("path");
+const fs = require("fs");
+const { kebabCase } = require("lodash");
 
 
 function index(req, res) {
-
     res.format({
-
         html: () => {
-
-            // title
             const html = ["<h1>Posts</h1>"];
-
-            // posts list
             html.push("<ul>");
-            postsPath.forEach(post => {
+
+            postsJSON.forEach(post => {
                 html.push(
                     `<li>
-
-                <h3>${post.title}</h3>
-
-                <img src="/imgs/posts/${post.image}" alt="" style="width: 150px; height: 150px">
-
-                <p>${post.content}</p>
-
-                    </li>`);
+                        <h3>${post.title}</h3>
+                        <img src="/imgs/posts/${post.image}" alt="" style="width: 150px; height: 150px">
+                        <p>${post.content}</p>
+                    </li>`
+                );
 
                 // tags
                 html.push("<span>");
-
                 post.tags.forEach(tag => {
                     html.push(`${tag}<br>`);
                 });
-
                 html.push("</span>");
-
             });
 
             html.push("</ul>");
-
             res.send(html.join(""));
         },
         json: () => {
             res.type("json").send({
-                totalElements: postsPath.length,
-                list: postsPath
+                totalElements: postsJSON.length,
+                list: postsJSON
             });
         },
         default: () => {
             res.status(406).send("Not Acceptable");
         },
-    })
+    });
 }
 
 function show(req, res) {
@@ -76,6 +67,42 @@ function create(req, res) {
 
 }
 
+function store(req, res) {
+
+    let idList = postsJSON.map((post) => post.id);
+    idList.sort((a, b) => b - a);
+
+    const newPost = {
+        ...req.body,
+        id: idList[0] + 1,
+        slug: kebabCase(req.body.title),
+        updatedAt: new Date().toISOString(),
+        // image: req.file,
+    };
+    postsJSON.push(newPost);
+
+    fs.writeFileSync(path.resolve(__dirname, "..", "db", "db.json"), JSON.stringify(postsJSON, null, 2));
+
+    if (req.accepts("html")) {
+
+        res.redirect(`/posts/${newPost.id}`);
+    } else {
+
+        res.json(newPost);
+    }
+}
+
+function destroy(req, res) {
+    
+    const post = doesPostExist(req, res);
+
+    const postIndex = postsJSON.findIndex((_post) => _post.id == post.id);
+
+    postsJSON.splice(postIndex, 1);
+
+    res.send("Post eliminato");
+}
+
 function download(req, res) {
 
     const post = doesPostExist(req, res);
@@ -99,13 +126,10 @@ function download(req, res) {
 
 
 
-
 // other functions
 function doesPostExist(req, res) {
-
-    const postSlug = req.params.slug;
-
-    const post = posts.find((post) => post.slug == postSlug);
+    const postID = req.params.id;
+    const post = postsJSON.find((post) => post.id == postID);
 
     if (!post) {
         res.status(404).send(`Post non trovato`);
@@ -120,5 +144,7 @@ module.exports = {
     index,
     show,
     create,
+    store,
+    destroy,
     download
 }

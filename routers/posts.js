@@ -9,8 +9,14 @@ router.get("/", postsController.index)
 // create
 router.get("/create", postsController.create)
 
+// store
+router.post("/", express.urlencoded({ extended: true }), postsController.store);
+
 // show
-router.get("/:slug", postsController.show)
+router.get("/:id", postsController.show)
+
+//delete
+router.delete("/:id", postsController.destroy);
 
 // download
 router.get("/:slug/download", postsController.download)
