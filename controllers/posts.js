@@ -77,12 +77,14 @@ function store(req, res) {
         id: idList[0] + 1,
         slug: kebabCase(req.body.title),
         updatedAt: new Date().toISOString(),
-        // image: req.file,
+        image: req.file,
     };
+
     postsJSON.push(newPost);
 
     fs.writeFileSync(path.resolve(__dirname, "..", "db", "db.json"), JSON.stringify(postsJSON, null, 2));
 
+    
     if (req.accepts("html")) {
 
         res.redirect(`/posts/${newPost.id}`);
@@ -99,6 +101,28 @@ function destroy(req, res) {
     const postIndex = postsJSON.findIndex((_post) => _post.id == post.id);
 
     postsJSON.splice(postIndex, 1);
+
+    if (post.image) {
+        if (typeof post.image === "string") {
+          const filePath = path.resolve(
+            __dirname,
+            "..",
+            "public",
+            "imgs",
+            "posts",
+            post.image
+          );
+    
+          fs.unlinkSync(filePath);
+        } else {
+          const filePath = path.resolve(__dirname, "..", post.image.path);
+    
+          fs.unlinkSync(filePath);
+        }
+      }
+
+
+
 
     res.send("Post eliminato");
 }

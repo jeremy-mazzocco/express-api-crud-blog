@@ -113,13 +113,83 @@
     "updatedAt": "2023-11-14T15:24:30.794Z"
   },
   {
-    "title": "Nuovo Post",
-    "content": "descrizione ....................................................................................",
+    "title": "Nuovo titolo",
+    "content": "lalallalalallalalalalalalallalalalalalalalalalalal",
     "tags": [
-      "Torte"
+      "cakes"
     ],
-    "id": 18,
-    "slug": "nuovo-post",
-    "updatedAt": "2023-11-14T15:24:32.649Z"
+    "id": 19,
+    "slug": "nuovo-titolo",
+    "updatedAt": "2023-11-14T16:10:27.068Z",
+    "image": {
+      "fieldname": "image",
+      "originalname": "Screenshot 2023-06-18 195537.png",
+      "encoding": "7bit",
+      "mimetype": "image/png",
+      "destination": "public/imgs/posts",
+      "filename": "2405291123e65d0314bab95af6905395",
+      "path": "public\\imgs\\posts\\2405291123e65d0314bab95af6905395",
+      "size": 601501
+    }
+  },
+  {
+    "title": "Nuovo titolo",
+    "content": "lalallalalallalalalalalalallalalalalalalalalalalal",
+    "tags": [
+      "cakes"
+    ],
+    "id": 20,
+    "slug": "nuovo-titolo",
+    "updatedAt": "2023-11-14T16:16:37.003Z",
+    "image": {
+      "fieldname": "image",
+      "originalname": "Screenshot 2023-06-18 195537.png",
+      "encoding": "7bit",
+      "mimetype": "image/png",
+      "destination": "public/imgs/posts",
+      "filename": "3b737db0fb931de4f2bd4622207e24c5",
+      "path": "public\\imgs\\posts\\3b737db0fb931de4f2bd4622207e24c5",
+      "size": 601501
+    }
+  },
+  {
+    "title": "Nu99ovo titolo",
+    "content": "lalallalalallalalalalalalallalalalalalalalalalalal",
+    "tags": [
+      "cakes"
+    ],
+    "id": 21,
+    "slug": "nu-99-ovo-titolo",
+    "updatedAt": "2023-11-14T16:18:48.862Z",
+    "image": {
+      "fieldname": "image",
+      "originalname": "Screenshot 2023-06-18 195537.png",
+      "encoding": "7bit",
+      "mimetype": "image/png",
+      "destination": "public/imgs/posts",
+      "filename": "4fe1f19bf26fd7dcf2f239a2ef38db33",
+      "path": "public\\imgs\\posts\\4fe1f19bf26fd7dcf2f239a2ef38db33",
+      "size": 601501
+    }
+  },
+  {
+    "title": "Nu99ovo titolo",
+    "content": "lalallalalallalalalalalalallalalalalalalalalalalal",
+    "tags": [
+      "cakes"
+    ],
+    "id": 22,
+    "slug": "nu-99-ovo-titolo",
+    "updatedAt": "2023-11-14T16:22:39.628Z",
+    "image": {
+      "fieldname": "image",
+      "originalname": "Screenshot 2023-06-18 195537.png",
+      "encoding": "7bit",
+      "mimetype": "image/png",
+      "destination": "public/imgs/posts",
+      "filename": "b4fb799efcab7d606de25183b4fb3a1e",
+      "path": "public\\imgs\\posts\\b4fb799efcab7d606de25183b4fb3a1e",
+      "size": 601501
+    }
   }
 ]

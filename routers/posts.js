@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const router = express.Router();
 const postsController = require("../controllers/posts");
 
@@ -10,7 +11,9 @@ router.get("/", postsController.index)
 router.get("/create", postsController.create)
 
 // store
-router.post("/", express.urlencoded({ extended: true }), postsController.store);
+// router.post("/", express.urlencoded({ extended: true }), postsController.store);
+router.post("/", multer({ dest: "public/imgs/posts" }).single("image"), postsController.store);
+
 
 // show
 router.get("/:id", postsController.show)
